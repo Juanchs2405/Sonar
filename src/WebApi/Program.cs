@@ -7,14 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Logging.ClearProviders();
 
-builder.Services.AddCors(o => o.AddPolicy("bad", p => p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
-
 var app = builder.Build();
 
 BadDb.ConnectionString = app.Configuration.GetConnectionString("Sql")
     ?? throw new InvalidOperationException("No se encontro la conexion SQL.");
-
-app.UseCors("bad");
 
 app.Use(async (ctx, next) =>
 {
