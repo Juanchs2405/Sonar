@@ -5,10 +5,17 @@ using System.Security.Cryptography;
 
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 builder.Logging.ClearProviders();
 
 var app = builder.Build();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 BadDb.ConnectionString = app.Configuration.GetConnectionString("Sql")
     ?? throw new InvalidOperationException("No se encontro la conexion SQL.");
@@ -49,4 +56,5 @@ app.MapGet("/info", () => new
     databaseConfigured = !string.IsNullOrWhiteSpace(BadDb.ConnectionString),
     version = "v0.0.1"
 });
+await app.RunAsync();
 
