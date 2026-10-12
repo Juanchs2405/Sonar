@@ -1,9 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>disable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-	</PropertyGroup>
+	  <UserSecretsId>be4a5f21-b221-4c54-9e47-6d22a53f825b</UserSecretsId>
+  </PropertyGroup>
 	<ItemGroup>
 		<!-- BAD: Web directly references everything (tight coupling) -->
 		<ProjectReference Include="..\Application\Application.csproj" />
